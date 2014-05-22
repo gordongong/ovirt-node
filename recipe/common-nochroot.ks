@@ -96,3 +96,6 @@ cp $INSTALL_ROOT/etc/issue $INSTALL_ROOT/etc/issue.net
 NAME=$(grep CDLABEL $LIVE_ROOT/isolinux/isolinux.cfg |head -n1|sed -r 's/^.*CDLABEL\=([a-zA-Z0-9_\.-]+) .*$/\1/g')
 
 %include common-efi.ks
+
+echo "Add openstack compute configuration script to livecd"
+cp -rf configcompute/* $INSTALL_ROOT/usr/libexec

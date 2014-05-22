@@ -1,0 +1,5 @@
+DEVICE=br-int
+ONBOOT=yes
+DEVICETYPE=ovs
+TYPE=OVSBridge
+BOOTPROTO=none
