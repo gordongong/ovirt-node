@@ -5,6 +5,9 @@
 
 %include repos.ks
 
+%include openstack/openstack-common.ks
+%include openstack/openstack-compute.ks
+
 %packages --excludedocs --nobase
 %include common-pkgs.ks
 %include @DISTRO@-pkgs.ks

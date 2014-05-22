@@ -5,7 +5,7 @@
 
 %post
 echo "Removing python source files"
-find /usr -name '*.py' -exec rm -f {} \;
-find /usr -name '*.pyo' -exec rm -f {} \;
+#find /usr -name '*.py' -exec rm -f {} \;
+#find /usr -name '*.pyo' -exec rm -f {} \;
 
 %end

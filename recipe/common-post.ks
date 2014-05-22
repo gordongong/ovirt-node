@@ -217,10 +217,10 @@ ln -s /usr/bin/ovirt-node-setup /usr/sbin/setup
 
 
 #set NETWORKING off by default
-augtool << \EOF_NETWORKING
-set /files/etc/sysconfig/network/NETWORKING no
-save
-EOF_NETWORKING
+#augtool << \EOF_NETWORKING
+#set /files/etc/sysconfig/network/NETWORKING no
+#save
+#EOF_NETWORKING
 
 # disable SSH password auth by default
 # set ssh timeouts for increased security

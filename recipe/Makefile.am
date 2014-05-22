@@ -83,12 +83,21 @@ $(PACKAGE).ks: repos.ks version.ks
 repos.ks:
 	( \
       if [ -n "$(CENTOS)" ]; then \
-        CENTOS_REPO_LINE="repo --name=centos --mirrorlist=$(CENTOS_MIRROR)?release=$(CENTOS_RELEASE)&arch=${ARCH}&repo=os" ;\
-        UPDATES_REPO_LINE="repo --name=centos-updates --mirrorlist=$(CENTOS_MIRROR)?release=$(CENTOS_RELEASE)&arch=${ARCH}&repo=updates" ;\
-        EPEL_REPO_LINE="repo --name=epel --baseurl=http://dl.fedoraproject.org/pub/epel/$(CENTOS_RELEASE)/${ARCH}/" ;\
-        echo "$${CENTOS_REPO_LINE}" > repos.ks ;\
-        echo "$${UPDATES_REPO_LINE}" >> repos.ks ;\
-        echo "$${EPEL_REPO_LINE}" >> repos.ks ;\
+            CENTOS_REPO_LINE="repo --name=centos --baseurl=http://mirrors.163.com/centos/$(CENTOS_RELEASE)/os/${ARCH}/" ;\
+            UPDATES_REPO_LINE="repo --name=centos-updates --baseurl=http://mirrors.163.com/centos/$(CENTOS_RELEASE)/updates/${ARCH}/" ;\
+            EPEL_REPO_LINE="repo --name=epel --baseurl=http://dl.fedoraproject.org/pub/epel/$(CENTOS_RELEASE)/${ARCH}/" ;\
+            OVIRT_NODE="repo --name=ovirt-node --baseurl=file:///root/rpmbuild/RPMS/noarch" ;\
+            LOCAL_REPO="repo --name=kimchi --baseurl=file:///root/rpm/RPMS/x86_64" ;\
+            echo "$${CENTOS_REPO_LINE}" > repos.ks ;\
+            echo "$${UPDATES_REPO_LINE}" >> repos.ks ;\
+            echo "$${EPEL_REPO_LINE}" >> repos.ks ;\
+            echo "$${OVIRT_NODE}" >> repos.ks ;\
+            echo "$${LOCAL_REPO}" >> repos.ks ;\
+            echo "repo --name=rdo --baseurl=http://repos.fedorapeople.org/repos/openstack/openstack-icehouse/epel-6/" >> repos.ks ;\
+            echo "repo --name=rdo_customized --baseurl=http://openstack.wiaapp.com/openstack-ovirt-node-deps/" >> repos.ks ;\
+            echo "repo --name=puppetlabs-products --baseurl=http://yum.puppetlabs.com/el/6/products/${ARCH}" >> repos.ks ;\
+            echo "repo --name=puppetlabs-deps --baseurl=http://yum.puppetlabs.com/el/6/dependencies/${ARCH}" >> repos.ks ;\
+            echo "repo --name=foreman --baseurl=http://yum.theforeman.org/releases/1.5/el6/${ARCH}" >> repos.ks ;\
       elif [ -n "$(FEDORA)" ]; then \
             OVIRT_STABLE_REPO_LINE="repo --name=ovirt-stable-repo --baseurl=$(OVIRT_URL)/$(FEDORA)\n" ;\
             OVIRT_NIGHTLY_REPO_LINE="repo --name=ovirt-nightly-repo --baseurl=$(OVIRT_NIGHTLY_URL)/$(FEDORA)\n" ;\
