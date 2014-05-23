@@ -36,6 +36,10 @@ cat > /etc/sysconfig/iptables << \EOF
 -A INPUT -p tcp --dport 16514 -j ACCEPT
 # SSH
 -A INPUT -p tcp --dport 22 -j ACCEPT
+# kimchi
+-A INPUT -p tcp --dport 8000 -j ACCEPT
+-A INPUT -p tcp --dport 8001 -j ACCEPT
+-A INPUT -p tcp --dport 64667 -j ACCEPT
 # guest consoles
 -A INPUT -p tcp -m multiport --dports 5634:6166 -j ACCEPT
 # migration
@@ -45,9 +49,6 @@ cat > /etc/sysconfig/iptables << \EOF
 #
 -A INPUT -j REJECT --reject-with icmp-host-prohibited
 -A FORWARD -m physdev ! --physdev-is-bridged -j REJECT --reject-with icmp-host-prohibited
--A INPUT -p tcp --dport 8000 -j ACCEPT
--A INPUT -p tcp --dport 8001 -j ACCEPT
--A INPUT -p tcp --dport 64667 -j ACCEPT
 COMMIT
 EOF
 # configure IPv6 firewall, default is all ACCEPT
