@@ -83,6 +83,7 @@ sed -i "s/128.0.0.1/$controllerip/g" /etc/cinder/api-paste.ini
 # create default vg, currently only retain 5G for /data, the left will be used by vg
 vgdisplay cinder-volumes
 if [ $? -ne 0 ];then
+  datadirsize=`lvs /dev/HostVG/Data -o LV_SIZE --noheadings --units g --nosuffix`
   datadirsize=${datadirsize%%.*}
   leftsize=`expr $datadirsize - 5`
   if [ $leftsize -lt 0 ];then
