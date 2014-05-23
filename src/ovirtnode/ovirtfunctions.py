@@ -746,6 +746,16 @@ def mount_data():
         system_closefds("restorecon -rv /var/log/core &>/dev/null")
         system_closefds("mkdir -p /var/log/journal")
         system_closefds("restorecon -rv /var/log/journal &>/dev/null")
+
+        # support kimchi
+        system_closefds("mkdir -p /data/kimchi")
+        system_closefds("mkdir -p /data/nginx/tmp")
+        system_closefds("chown nginx:nginx /data/nginx -R")
+        system_closefds("mount /var/lib/kimchi")
+        system_closefds("restorecon -rv /var/lib/kimchi &>/dev/null")
+        system_closefds("mount /var/lib/nginx")
+        system_closefds("restorecon -rv /var/lib/nginx &>/dev/null")
+
         return
     else:
         # /data is not available

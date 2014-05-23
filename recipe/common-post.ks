@@ -75,6 +75,7 @@ mkdir -p /live
 mkdir -p /liveos
 mkdir -p /root/.uml
 mkdir -p /var/cache/multipathd
+mkdir -p /var/lib/kimchi
 touch /var/lib/random-seed
 echo "/dev/HostVG/Config /config ext4 defaults,noauto,noatime 0 0" >> /etc/fstab
 
@@ -247,3 +248,5 @@ rm -rf /var/lib/yum/*
 
 # enable strong random number generation
 sed -i '/SSH_USE_STRONG_RNG/d' /etc/sysconfig/sshd
+
+chkconfig kimchid on

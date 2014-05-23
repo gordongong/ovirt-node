@@ -555,6 +555,10 @@ class Storage:
                             "/etc/fstab")
             _functions.system_closefds("echo \"/data/core " + \
                             "/var/log/core bind bind 0 0\" >> /etc/fstab")
+            _functions.system_closefds("echo \"/data/kimchi " + \
+                            "/var/lib/kimchi bind bind 0 0\" >> /etc/fstab")
+            _functions.system_closefds("echo \"/data/nginx " + \
+                            "/var/lib/nginx bind bind 0 0\" >> /etc/fstab")
 
         logger.info("Mounting config partition")
         _functions.mount_config()

@@ -526,6 +526,7 @@ mount_data() {
         mkdir -p /data/images/rhev
         chown 36:36 /data/images/rhev
         mkdir -p /var/lib/libvirt/images
+
         if ! grep -q "/var/lib/libvirt/images ext[234]" /proc/mounts; then
             mount /var/lib/libvirt/images
         fi
@@ -541,6 +542,26 @@ mount_data() {
         fi
         restorecon -rv /var/log/core
         chmod 1777 /var/log/core
+
+        #support kimchi
+        mkdir -p /data/kimchi
+        mkdir -p /data/nginx/tmp
+        mkdir -p /data/nginx/xdtest
+        chown nginx:nginx /data/nginx -R
+
+        mkdir -p /var/lib/kimchi
+        if ! grep -q "/var/lib/kimchi ext[234]" /proc/mounts; then
+            mount /var/lib/kimchi
+        fi
+        restorecon -rv /var/lib/kimchi
+
+        mkdir -p /var/lib/nginx
+        if ! grep -q "/var/lib/nginx ext[234]" /proc/mounts; then
+            mount /var/lib/nginx
+        fi
+        restorecon -rv /var/lib/nginx
+
+
         # configure kdump
         cat > /etc/kdump.conf <<\EOF
 default reboot
