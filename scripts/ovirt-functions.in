@@ -546,7 +546,6 @@ mount_data() {
         #support kimchi
         mkdir -p /data/kimchi
         mkdir -p /data/nginx/tmp
-        mkdir -p /data/nginx/xdtest
         chown nginx:nginx /data/nginx -R
 
         mkdir -p /var/lib/kimchi

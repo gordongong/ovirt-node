@@ -249,4 +249,4 @@ rm -rf /var/lib/yum/*
 # enable strong random number generation
 sed -i '/SSH_USE_STRONG_RNG/d' /etc/sysconfig/sshd
 
-chkconfig kimchid on
+/sbin/chkconfig kimchid on
