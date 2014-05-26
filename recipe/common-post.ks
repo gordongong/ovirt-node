@@ -250,3 +250,4 @@ rm -rf /var/lib/yum/*
 sed -i '/SSH_USE_STRONG_RNG/d' /etc/sysconfig/sshd
 
 /sbin/chkconfig kimchid on
+
