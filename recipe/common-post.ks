@@ -21,7 +21,18 @@ echo "Relabeling files"
 
 echo "Configuring libvirt"
 # make sure we don't autostart virbr0 on libvirtd startup
-rm -f /etc/libvirt/qemu/networks/autostart/default.xml
+#rm -f /etc/libvirt/qemu/networks/autostart/default.xml
+
+cat > /etc/libvirt/qemu/networks/default.xml << \EOF_libvirt
+<network>
+  <name>default</name>
+  <uuid>16c8113a-b410-1b60-f11e-0f67f14af104</uuid>
+  <forward dev='eth0' mode='bridge'>
+    <interface dev='eth0'/>
+  </forward>
+</network>
+EOF_libvirt
+
 
 # rhevh uses libvirtd upstart job, sysv initscript must not interfere
 rm -f /etc/rc.d/init.d/libvirtd
