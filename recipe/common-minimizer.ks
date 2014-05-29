@@ -135,6 +135,7 @@ keep /lib/modules/*/kernel/drivers/i2c
 
 drop /usr/share/zoneinfo
 keep /usr/share/zoneinfo/UTC
+keep /usr/share/zoneinfo/Asia/Shanghai
 
 drop /etc/alsa
 drop /usr/share/alsa
