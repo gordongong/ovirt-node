@@ -37,6 +37,14 @@ persist /etc/rc.d
 
 echo "/etc/libvirt/qemu /config/etc/libvirt/qemu bind bind 0 0" >> /etc/fstab
 
+rm -rf /etc/localtime
+cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+persist /etc/localtime
+
+service ntpd stop & ntpdate $controllerip
+persist /etc/crontab
+echo "* */1 * * *  root service ntpd stop & ntpdate $controllerip" >> /etc/crontab
+
 echo "end: config common module"
 
 
